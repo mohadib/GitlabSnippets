@@ -1,0 +1,31 @@
+<idea-plugin>
+    <id>org.openactive.gitlab.snippets</id>
+    <name>Gitlab Snippets</name>
+    <version>1.0</version>
+    <vendor email="jdavis@openactive.org" url="http://openactive.org">OpenActive</vendor>
+
+    <description><![CDATA[
+    A plugin to help add Gitlab snippets.
+    ]]></description>
+
+    <change-notes><![CDATA[
+      Initial version.
+    ]]>
+    </change-notes>
+
+    <idea-version since-build="145.0"/>
+
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable instance="org.openactive.gitlab.snippet.SnippetCreate"/>
+    </extensions>
+
+    <actions>
+        <action id="Snippet.Create" class="org.openactive.gitlab.snippet.SnippetCreate"
+                text="Gitlab Snippet" description="Create a Snippet">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+
+</idea-plugin>

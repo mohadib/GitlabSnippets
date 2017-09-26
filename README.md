@@ -4,13 +4,13 @@ A plugin for Jetbrains IDEs for creating Gitlab snippets within the IDE.
 
 ### To Install:
 
-Build or download the Snippet.jar file and place it in .IntelliJIDEAx0\config\plugins
-then restart your IDE.
+Build or download the Snippet.zip file. Then file -> settings -> Plugins, choose "install plugin from disk".
+Select Snippet.zip. Restart your IDE.
 
 
 ### To Configure:
 
-Under settings -> other settings -> Gitlab Snippets
+Under file -> settings -> other settings -> Gitlab Snippets
 
 add your private token and  url to your Gitlab install.
  

@@ -16,9 +16,9 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.codehaus.jettison.json.JSONObject;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -135,7 +135,7 @@ public class SnippetCreate extends AnAction implements Configurable
       HttpPost post = new HttpPost( getUseableUrl() );
       post.addHeader( "PRIVATE-TOKEN", getToken() );
 
-      String data = getData( "Snippet", text, fileName );
+      String data = getData( fileName, text, fileName );
       StringEntity ent = new StringEntity( data, ContentType.APPLICATION_JSON );
       post.setEntity( ent );
       try ( CloseableHttpClient client = HttpClients.createDefault() )

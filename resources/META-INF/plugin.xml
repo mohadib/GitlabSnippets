@@ -26,6 +26,10 @@
                 text="Gitlab Snippet" description="Create a Snippet">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
+        <action id="SnippetBB.Create" class="org.openactive.gitlab.snippet.BitBucketSnippiet"
+                text="BitBucket Snippet" description="Create a Snippet">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
     </actions>
 
 </idea-plugin>

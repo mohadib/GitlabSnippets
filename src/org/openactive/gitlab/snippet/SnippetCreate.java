@@ -21,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -79,16 +80,22 @@ public class SnippetCreate extends AnAction implements Configurable
    @Override
    public JComponent createComponent()
    {
-      JLabel urlHint = new JLabel("This url should point at the root of your Gitlab install.\n i.e. https://gitlab.company.com" );
-      JLabel urlLable = new JLabel( "Gitlab Install URL" );
-      urlField = new JTextField( getUrl() );
+      return null;
+   }
+
+   private JPanel getBitBucketConfigPanel()
+   {
+      JLabel urlHint = new JLabel("Full Snippet API URL.\n i.e. https://api.bitbucket.org/2.0/snippets/myTeam" );
+      JLabel urlLable = new JLabel( "Snippet API URL" );
+      urlField = new JTextField();
 
       JLabel tokenLable = new JLabel( "Token" );
-      tokenField = new JTextField( getToken() );
+      tokenField = new JTextField();
 
       JPanel panel = new JPanel( new GridBagLayout() );
       Bag bag = new Bag();
 
+      panel.setBorder(new TitledBorder("Gitlab"));
 
       panel.add( urlLable, bag );
       panel.add( urlField, bag.nextX().fillX() );
@@ -109,15 +116,49 @@ public class SnippetCreate extends AnAction implements Configurable
       return panel;
    }
 
+   private JPanel getGitlabConfigPanel()
+   {
+      JLabel urlHint = new JLabel("This url should point at the root of your Gitlab install.\n i.e. https://gitlab.company.com" );
+      JLabel urlLable = new JLabel( "Gitlab Install URL" );
+      urlField = new JTextField( getUrl() );
+
+      JLabel tokenLable = new JLabel( "Token" );
+      tokenField = new JTextField( getToken() );
+
+      JPanel panel = new JPanel( new GridBagLayout() );
+      Bag bag = new Bag();
+
+      panel.setBorder(new TitledBorder("Gitlab"));
+
+      panel.add( urlLable, bag );
+      panel.add( urlField, bag.nextX().fillX() );
+      panel.add( urlHint, bag.nextY().fillNone());
+
+      JPanel spacer = new JPanel();
+      spacer.setPreferredSize( new Dimension( 5, 30 ) );
+      panel.add( spacer, bag.nextY().resetX() );
+
+      panel.add( tokenLable, bag.nextY().resetX().fillNone().colspan( 1 ) );
+      panel.add( tokenField, bag.nextX().fillX() );
+
+      JLabel tokenHint = new JLabel( "To create a new token https://gitlab.company.com/profile/personal_access_tokens" );
+      panel.add( tokenHint, bag.nextY().fillNone() );
+
+      panel.add( Bag.spacer(), bag.nextY().resetX().colspan( 2 ).fillBoth() );
+
+      return panel;
+   }
+
+
    @Override
    public boolean isModified()
    {
-      if ( urlField.getText().trim().length() > 0 && tokenField.getText().trim().length() > 0 )
-      {
+     // if ( urlField.getText().trim().length() > 0 && tokenField.getText().trim().length() > 0 )
+      //{
          return !(urlField.getText().matches( getUrl() ) &&
            tokenField.getText().matches( getToken() ));
-      }
-      return false;
+      //}
+      //return false;
    }
 
    @Override
